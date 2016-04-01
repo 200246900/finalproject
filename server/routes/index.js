@@ -41,7 +41,7 @@ router.get('/contact', function (req, res, next) {
 /* Email processing */
 router.post('/contact', function (req, res, next) {
     sendgrid.send({
-        to: 'tsiliopoulos@hotmail.com',
+        to: '200246900@student.georgianc.on.ca',
         from: req.body.email,
         subject: 'Contact Form Submission',
         text: "This message has been sent from the contact form at [MongoDB Demo]\r\n\r\n" +

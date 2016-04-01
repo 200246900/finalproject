@@ -29,7 +29,20 @@ var ticketSchema = new mongoose.Schema ({
     },
     ticketDesc: {
         type: String,
-        default: 'NEW',
+        default: '',
+        trim: true
+    },
+    ticketCreated: {
+       type: Date,
+       default:Date.now
+    },
+    ticketClosed: {
+        type: Date,
+        default: Date.now
+    },
+    ticketLife: {
+        type: String,
+        default: '',
         trim: true
     }
 }, 

@@ -12,16 +12,16 @@
         <td>Status</td>
         <td>Owner</td>		
         <td>Opened</td>
-        <td>Closed</td>
+        <td>Last Update</td>
     </tr>
     <% for (var i = 0; i < tickets.length; i++) { %>
     <tr>
         <td><a href="/tickets/<%= tickets[i]._id %>" title="Edit Article"><%= tickets[i].ticketNum %></a></td>
-        <td><%= tickets[i].ticketPriority %></td>	
+        <td><%= tickets[i].ticketPriority %></td>
         <td><%= tickets[i].ticketStatus %></td>	
         <td><%= tickets[i].ticketOwner %></td>
-        <td><%= tickets[i].created.toDateString() %></td>
-        <td><td>		
+        <td><%= tickets[i].created %></td>
+        <td><%= tickets[i].ticketClosed %></td>		
     </tr>
     <% } %>
     </table>

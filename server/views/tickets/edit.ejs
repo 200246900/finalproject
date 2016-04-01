@@ -5,14 +5,36 @@
 
     <form method="post">
         <fieldset class="form-group">
-            <label for="title" class="col-sm-2">Title: *</label>
-            <input name="title" required value="<%= ticket.title %>" />
+            <label for="ticketNum">Ticket Number</label><br>  
+            <input name="ticketNum" readonly value="<%= ticket.ticketNum %>" /><br>
+            
+            <label for="ticketCreated">Date Created</label><br>  
+            <input name="ticketCreated" readonly value="<%= ticket.created %>" /><br>
+            
+            <label for="ticketClosed">Last Update</label><br>  
+            <input hidden name="ticketClosed" readonly value="<%= Date.now() %>" /><br>
+            
+            <label for="ticketOwner">Owner Name</label><br>  
+            <input name="ticketOwner" readonly value="<%= ticket.ticketOwner %>"/><br>
+            
+            <label for="ticketDesc">Ticket Description</label><br>  
+            <input name="ticketDesc" required value="<%= ticket.ticketDesc %>"></input><br>
+            
+            <label for="radioCheck">Priority Level</label><br>
+            <select name="ticketPriority">
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+            </select><br>
+            
+            <label for="radioCheck">Status</label><br>
+            <select name="ticketStatus">
+                <option value="Ongoing">Ongoing</option>
+                <option value="Closed">Closed</option>
+            </select>
+            
         </fieldset>
-        <fieldset class="form-group">
-            <label for="content" class="col-sm-2">Content: *</label>
-            <textarea name="content" required><%= ticket.content %></textarea>
-        </fieldset>
-        <button type="submit" class="col-sm-offset-2 btn btn-success">Submit</button>
+        <button type="submit" class="col-sm-offset-2 btn btn-success">Update</button>
 
         <a href="/tickets/delete/<%= ticket._id %>" title="Delete" onclick="return confirm('Are you sure you want to delete this?');">
             <button type="button" class="btn btn-danger">Delete</button>

@@ -40,7 +40,10 @@ router.post('/add', function(req: express.Request, res: express.Response, next: 
         ticketOwner: req.body.ticketOwner,
         ticketStatus: req.body.ticketStatus,
         ticketPriority: req.body.ticketPriority,
-        ticketDesc: req.body.ticketDesc
+        ticketDesc: req.body.ticketDesc,
+        ticketCreated: req.body.ticketCreated,
+        ticketClosed: req.body.ticketClosed,
+        ticketLife: req.body.ticketDesc
     }, function(error, Ticket) {
         // did we get back an error or valid Ticket object?
         if (error) {
@@ -86,7 +89,10 @@ router.post('/:id', (req: express.Request, res: express.Response, next: any) => 
         ticketOwner: req.body.ticketOwner,
         ticketStatus: req.body.ticketStatus,
         ticketPriority: req.body.ticketPriority,
-        ticketDesc: req.body.ticketDesc
+        ticketDesc: req.body.ticketDesc,
+        ticketCreated: req.body.ticketCreated,
+        ticketClosed: req.body.ticketClosed,
+        ticketLife: req.body.ticketDesc
     });
 
     // run the update using mongoose and our model
