@@ -1,0 +1,26 @@
+<% include ../partials/header.ejs %>
+<% include ../partials/navbar.ejs %>
+<main class="container">
+    <h1>Add a new Ticket</h1>
+
+    <form method="post">
+        <fieldset class="form-group">
+            <label for="ticketNum">Ticket Number</label><br>  
+            <input name="ticketNum" required /><br>
+            <label for="ticketOwner">Owner Name</label><br>  
+            <input name="ticketOwner" required /><br>
+            <label for="ticketDesc">Ticket Description</label><br>  
+            <textarea name="ticketDesc" required></textarea><br>
+            <label for="radioCheck">Priority Level</label><br>
+            <select name="ticketPriority">
+                <option value="Low">LOW</option>
+                <option value="Medium">MEDIUM</option>
+                <option value="High">HIGH</option>
+            </select>
+        </fieldset>
+        <button type="submit" class="col-sm-offset-2 btn btn-success">Submit</button>
+
+    </form>
+
+</main>
+<% include ../partials/footer.ejs %>

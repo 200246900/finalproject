@@ -1,0 +1,29 @@
+<% include ../partials/header.ejs %>
+<% include ../partials/navbar.ejs %>
+<main class="container">
+    <h1>Tickets</h1>
+
+    <a href="/tickets/add">Add a New Ticket</a>
+
+    <table style="width:100%">
+    <tr>
+        <td>Ticket Number</td>
+        <td>Priority</td>
+        <td>Status</td>
+        <td>Owner</td>		
+        <td>Opened</td>
+        <td>Closed</td>
+    </tr>
+    <% for (var i = 0; i < tickets.length; i++) { %>
+    <tr>
+        <td><a href="/tickets/<%= tickets[i]._id %>" title="Edit Article"><%= tickets[i].ticketNum %></a></td>
+        <td><%= tickets[i].ticketPriority %></td>	
+        <td><%= tickets[i].ticketStatus %></td>	
+        <td><%= tickets[i].ticketOwner %></td>
+        <td><%= tickets[i].created.toDateString() %></td>
+        <td><td>		
+    </tr>
+    <% } %>
+    </table>
+</main>
+<% include ../partials/footer.ejs %>
