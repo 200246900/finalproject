@@ -2,80 +2,155 @@
 <% include ../partials/navbar.ejs %>
 <main class="container">
     <h1>Edit Ticket</h1>
-
-    <form method="post">
-        <script>
+    <div class="row">
+        <div class="col-xs-5" style="border-style: solid;">
+            <form method="post">
+                <!-- JAVASCRIPT for tickethistroy (TestLater) -->
+                <script>
                     var name = document.getElementById("ticket.ticketLife").value;
-                    name = name.substring(1);
-                    document.write("<input hidden name='ticketLife' readonly value='"+name+"' />");
-        </script>
-        <fieldset class="form-group">
-            <label for="ticketNum">Ticket Number</label><br>  
-            <input name="ticketNum" readonly value="<%= ticket.ticketNum %>" /><br>
-            
-            <label for="ticketCreated">Date Created</label><br>  
-            <input name="ticketCreated" readonly value="<%= ticket.created %>" /><br>
-            
-            <label for="ticketOwner">Owner Name</label><br>  
-            <input name="ticketOwner" id="ticketOwner" value="<%= ticket.ticketOwner %>"/><br>
-            
-            <label for="ticketDesc">Ticket Description</label><br>  
-            <input name="ticketDesc" readonly value="<%= ticket.ticketDesc %>"></input><br>
-            
-            <label for="ticketLife">Ticket Life</label><br>  
-            <input name="ticketLife" id="ticketLife" value="<%= ticket.ticketLife %>"></input><br>
-            
-            <label for="ticketUpdate">Ticket Update</label><br>  
-            <input name="ticketUpdate" placeholder="What has changed?"></input><br>
+                        name = name.substring(1);
+                        document.write("<input hidden name='ticketLife' readonly value='"+name+"' />");
+                </script>
 
-            <label for="radioCheck">Priority Level</label><br>
-            <select name="ticketPriority">
-                <option value="Low">Low</option>
-                <option value="Medium">Medium</option>
-                <option value="High">High</option>
-            </select><br>
-            
-            <label for="radioCheck">Status</label><br>
-            <select name="ticketStatus">
-                <option value="Ongoing">Ongoing</option>
-                <option value="Closed">Closed</option>
-            </select>
-            
-            <!-- Change to LastUpdate-->
-            <input hidden name="ticketClosed" readonly value="<%= Date.now() %>" />
-            
-        </fieldset>
-        <button type="submit" class="col-sm-offset-2 btn btn-success">Update</button>
-
-        <a href="/tickets/delete/<%= ticket._id %>" title="Delete" onclick="return confirm('Are you sure you want to delete this?');">
-            <button type="button" class="btn btn-danger">Delete</button>
-        </a>
-
-<br><br>
-        <!--Update Table-->
-        <table border="1" pas>
-            <tr><td>Number</td><td>Date</td><td>Owner</td><td>Update</td></tr>
-            <script>
-                var first = document.getElementById("ticketLife").value;
-                var values = first.split('/');
+                <!-- Ticket Number -->
+                <div class="row">
+                    <div class="col-xs-5">
+                        <label class="form-control" for="ticketNum">Ticket Number</label>
+                    </div>
+                    <div class="col-xs-7">
+                        <input class="form-control" name="ticketNum" readonly value="<%= ticket.ticketNum %>" />
+                    </div>
+                </div>
                 
-                for (i=0;i<values.length;i=i+3)
-                {
-                    document.write("<tr><td>" + (i/3) + "</td>");
-                    document.write("<td>" + values[i].substring(1) + "</td>");
-                    document.write("<td>" + values[i+1] + "</td>");
-                    document.write("<td>" + values[i+2] + "</td></tr>");
-                }
-            </script>
-        </table>
-        <script>
-            var date = Date.now();
-            var name = document.getElementById("ticketOwner").value;
-            var change = 'Created';
-            var seperator = '/';
-            var concatLife = date+seperator+name+seperator+change+seperator;
-            document.write("<input name='ticketLife' readonly value='"+concatLife+"' />");
-        </script>
-    </form>
+                <!-- Date Created -->
+                <div class="row">
+                    <div class="col-xs-5">
+                        <label class="form-control" for="ticketCreated">Date Created</label>
+                    </div>
+                    <div class="col-xs-7">
+                        <input class="form-control" name="ticketCreated" readonly value="<%= ticket.created %>" />
+                    </div>
+                </div>
+
+                <!-- Ticket Owner -->
+                <div class="row">
+                    <div class="col-xs-5">
+                        <label class="form-control" for="ticketOwner">Owner Name</label>
+                    </div>
+                    <div class="col-xs-7">
+                        <input class="form-control" name="ticketOwner" id="ticketOwner" value="<%= ticket.ticketOwner %>" />
+                    </div>
+                </div>
+
+                <!-- Ticket Description -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <label class="form-control" for="ticketDesc">Ticket Description</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <textarea class="form-control" rows="3" readonly placeholder="<%= ticket.ticketDesc %>"></textarea>
+                    </div>
+                </div>
+
+                <!-- Information for table don't delete -->
+                <input name="ticketLife" hidden id="ticketLife" value="<%= ticket.ticketLife %>"></input>
+
+                <!-- Updates -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <label class="form-control" for="ticketUpdate">Ticket Update</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <input class="form-control" name="ticketUpdate" placeholder="What has changed?"></input>
+                    </div>
+                </div>
+
+                <!-- Priority Level -->
+                <div class="row">
+                    <div class="col-xs-5">
+                        <label class="form-control" for="radioCheck">Priority Level</label>
+                    </div>
+                    <div class="col-xs-7">
+                        <select class="form-control" name="ticketPriority">
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Ticket Status -->
+                <div class="row">
+                    <div class="col-xs-5">
+                        <label class="form-control" for="radioCheck">Status</label>
+                    </div>
+                    <div class="col-xs-7">
+                        <select class="form-control" name="ticketStatus">
+                            <option value="Ongoing">Ongoing</option>
+                            <option value="Closed">Closed</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Change to LastUpdate-->
+                <input hidden name="ticketClosed" readonly value="<%= Date.now() %>" />
+
+                <!-- Buttons-->
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-xs-8">
+                        <button type="submit" class="col-sm btn btn-success btn-block">Update</button>
+                    </div>
+                    <div class="col-xs-4">
+                        <a href="/tickets/delete/<%= ticket._id %>" title="Delete" onclick="return confirm('Are you sure you want to delete this?');">
+                            <button type="button" class="btn btn-danger btn-block">Delete</button>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Creating History-->
+                <script>
+                    var date = Date.now();
+                    var name = document.getElementById("ticketOwner").value;
+                    var change = 'Created';
+                    var seperator = '/';
+                    var concatLife = date+seperator+name+seperator+change+seperator;
+                    document.write("<input hidden name='ticketLife' readonly value='"+concatLife+"' />");
+                </script>
+            </form>
+        </div>
+        <div class="col-xs-7" style="border-style: solid;">
+            <table class="table">
+                <caption>Update Record</caption>
+                <thead>
+                    <tr>
+                        <th>Number</th>
+                        <th>Date</th>
+                        <th>Owner</th>
+                        <th>Change</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <script>
+                        var first = document.getElementById("ticketLife").value;
+                            var values = first.split('/');
+                    
+                            for (i=0;i<values.length-1;i=i+3)
+                            {
+                                document.write("<tr><td>" + (i/3) + "</td>");
+                                document.write("<td>" + values[i].substring(1) + "</td>");
+                                document.write("<td>" + values[i+1] + "</td>");
+                                document.write("<td>" + values[i+2] + "</td></tr>");
+                            }
+                    </script>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </main>
 <% include ../partials/footer.ejs %>
