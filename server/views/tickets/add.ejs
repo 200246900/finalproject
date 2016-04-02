@@ -8,7 +8,7 @@
             <label for="ticketNum">Ticket Number</label><br>  
             <input name="ticketNum" required /><br>
             <label for="ticketOwner">Owner Name</label><br>  
-            <input name="ticketOwner" required /><br>
+            <input name="ticketOwner" id="ticketOwner" required /><br>
             <label for="ticketDesc">Ticket Description</label><br>  
             <textarea name="ticketDesc" required></textarea><br>
             <label for="radioCheck">Priority Level</label><br>
@@ -18,6 +18,8 @@
                 <option value="High">HIGH</option>
             </select>
         </fieldset>
+        <input hidden name="ticketLife" value="" /><br>
+
         <button type="submit" class="col-sm-offset-2 btn btn-success">Submit</button>
 
     </form>

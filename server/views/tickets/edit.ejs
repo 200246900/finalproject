@@ -4,6 +4,11 @@
     <h1>Edit Ticket</h1>
 
     <form method="post">
+        <script>
+                    var name = document.getElementById("ticket.ticketLife").value;
+                    name = name.substring(1);
+                    document.write("<input hidden name='ticketLife' readonly value='"+name+"' />");
+        </script>
         <fieldset class="form-group">
             <label for="ticketNum">Ticket Number</label><br>  
             <input name="ticketNum" readonly value="<%= ticket.ticketNum %>" /><br>
@@ -11,15 +16,18 @@
             <label for="ticketCreated">Date Created</label><br>  
             <input name="ticketCreated" readonly value="<%= ticket.created %>" /><br>
             
-            <label for="ticketClosed">Last Update</label><br>  
-            <input hidden name="ticketClosed" readonly value="<%= Date.now() %>" /><br>
-            
             <label for="ticketOwner">Owner Name</label><br>  
-            <input name="ticketOwner" readonly value="<%= ticket.ticketOwner %>"/><br>
+            <input name="ticketOwner" id="ticketOwner" value="<%= ticket.ticketOwner %>"/><br>
             
             <label for="ticketDesc">Ticket Description</label><br>  
-            <input name="ticketDesc" required value="<%= ticket.ticketDesc %>"></input><br>
+            <input name="ticketDesc" readonly value="<%= ticket.ticketDesc %>"></input><br>
             
+            <label for="ticketLife">Ticket Life</label><br>  
+            <input name="ticketLife" id="ticketLife" value="<%= ticket.ticketLife %>"></input><br>
+            
+            <label for="ticketUpdate">Ticket Update</label><br>  
+            <input name="ticketUpdate" placeholder="What has changed?"></input><br>
+
             <label for="radioCheck">Priority Level</label><br>
             <select name="ticketPriority">
                 <option value="Low">Low</option>
@@ -33,6 +41,9 @@
                 <option value="Closed">Closed</option>
             </select>
             
+            <!-- Change to LastUpdate-->
+            <input hidden name="ticketClosed" readonly value="<%= Date.now() %>" />
+            
         </fieldset>
         <button type="submit" class="col-sm-offset-2 btn btn-success">Update</button>
 
@@ -40,7 +51,31 @@
             <button type="button" class="btn btn-danger">Delete</button>
         </a>
 
+<br><br>
+        <!--Update Table-->
+        <table border="1" pas>
+            <tr><td>Number</td><td>Date</td><td>Owner</td><td>Update</td></tr>
+            <script>
+                var first = document.getElementById("ticketLife").value;
+                var values = first.split('/');
+                
+                for (i=0;i<values.length;i=i+3)
+                {
+                    document.write("<tr><td>" + (i/3) + "</td>");
+                    document.write("<td>" + values[i].substring(1) + "</td>");
+                    document.write("<td>" + values[i+1] + "</td>");
+                    document.write("<td>" + values[i+2] + "</td></tr>");
+                }
+            </script>
+        </table>
+        <script>
+            var date = Date.now();
+            var name = document.getElementById("ticketOwner").value;
+            var change = 'Created';
+            var seperator = '/';
+            var concatLife = date+seperator+name+seperator+change+seperator;
+            document.write("<input name='ticketLife' readonly value='"+concatLife+"' />");
+        </script>
     </form>
-
 </main>
 <% include ../partials/footer.ejs %>

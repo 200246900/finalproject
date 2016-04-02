@@ -43,6 +43,11 @@ var ticketSchema = new mongoose.Schema({
         type: String,
         default: '',
         trim: true
+    },
+    ticketUpdate: {
+        type: String,
+        default: '',
+        trim: true
     }
 }, {
     collection: "ticketInfo"
