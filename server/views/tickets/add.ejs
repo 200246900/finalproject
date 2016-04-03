@@ -13,6 +13,8 @@
                 </div>
                 <div class="col-xs-7">
                     <input class="form-control" name="ticketNum" readonly required value="<%= Date.now() %>" />
+                    <input class="form-control" name="ticketLastUpdate" hidden readonly required value="<%= Date.now() %>" />
+                    <input class="form-control" name="ticketCreated" hidden readonly required value="<%= Date.now() %>" />
                 </div>
             </div>
             <!--Ticket Owner-->

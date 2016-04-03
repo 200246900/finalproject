@@ -3,8 +3,9 @@ import mongoose = require('mongoose');
 // DEFINE THE OBJECT SCHEMA
 var ticketSchema = new mongoose.Schema ({
    created: {
-       type: Date,
-       default:Date.now
+        type: String,
+        default: '',
+        trim: true
    } ,
    ticketNum: {
         type: String,
@@ -24,7 +25,7 @@ var ticketSchema = new mongoose.Schema ({
     },
     ticketPriority: {
         type: String,
-        default: 'LOW',
+        default: '',
         trim: true
     },
     ticketDesc: {
@@ -33,12 +34,14 @@ var ticketSchema = new mongoose.Schema ({
         trim: true
     },
     ticketCreated: {
-       type: Date,
-       default:Date.now
+        type: String,
+        default: '',
+        trim: true
     },
-    ticketClosed: {
-        type: Date,
-        default: Date.now
+    ticketLastUpdate: {
+        type: String,
+        default: '',
+        trim: true
     },
     ticketLife: {
         type: String,

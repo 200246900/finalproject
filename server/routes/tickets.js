@@ -42,7 +42,7 @@ router.post('/add', function (req, res, next) {
         ticketPriority: req.body.ticketPriority,
         ticketDesc: req.body.ticketDesc,
         ticketCreated: req.body.ticketCreated,
-        ticketClosed: req.body.ticketClosed,
+        ticketLastUpdate: req.body.ticketLastUpdate,
         ticketLife: req.body.ticketLife,
         ticketUpdate: req.body.ticketUpdate
     }, function (error, Ticket) {
@@ -86,7 +86,7 @@ router.post('/:id', function (req, res, next) {
         ticketPriority: req.body.ticketPriority,
         ticketDesc: req.body.ticketDesc,
         ticketCreated: req.body.ticketCreated,
-        ticketClosed: req.body.ticketClosed,
+        ticketLastUpdate: req.body.ticketLastUpdate,
         ticketLife: req.body.ticketLife,
         ticketUpdate: req.body.ticketUpdate
     });
