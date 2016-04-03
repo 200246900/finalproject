@@ -4,26 +4,60 @@
     <h1>Tickets</h1>
 
     <a href="/tickets/add">Add a New Ticket</a>
-
-    <table style="width:100%">
-    <tr>
-        <td>Ticket Number</td>
-        <td>Priority</td>
-        <td>Status</td>
-        <td>Owner</td>		
-        <td>Opened</td>
-        <td>Last Update</td>
-    </tr>
-    <% for (var i = 0; i < tickets.length; i++) { %>
-    <tr>
-        <td><a href="/tickets/<%= tickets[i]._id %>" title="Edit Article"><%= tickets[i].ticketNum %></a></td>
-        <td><%= tickets[i].ticketPriority %></td>
-        <td><%= tickets[i].ticketStatus %></td>	
-        <td><%= tickets[i].ticketOwner %></td>
-        <td><%= tickets[i].created %></td>
-        <td><%= tickets[i].ticketClosed %></td>		
-    </tr>
-    <% } %>
+    
+    <div>
+        <input id="ticketsAll" type="button" value="Hide Closed Tickets" />
+    </div>
+    <div>
+        <input id="ticketsOpen" type="button" value="Nope" />
+    </div>
+    <table class="table table-bordered" id="table">
+        <thead>
+            <tr>
+                <th>Ticket Number</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Owner</th>		
+                <th>Opened</th>
+                <th>Last Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (var i = 0; i < tickets.length; i++) { %>
+                <tr>
+                    <td><a href="/tickets/<%= tickets[i]._id %>" title="Edit Article"><%= tickets[i].ticketNum %></a></td>
+                    <td><%= tickets[i].ticketPriority %></td>
+                    <td><%= tickets[i].ticketStatus %></td>	
+                    <td><%= tickets[i].ticketOwner %></td>
+                    <td><%= tickets[i].ticketCreated %></td>
+                    <td><%= tickets[i].ticketClosed %></td>		
+                </tr>
+            <% } %>
+        </tbody>
     </table>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+    $(function()
+    {
+        $('#ticketsAll').click(function() 
+        {
+            var searchString = 'Closed';
+            $("#table tr td:contains('" + searchString + "')").each(function() 
+            {
+            if ($(this).text() == searchString)    
+            {
+                $(this).parent().remove();
+            }
+        });
+    });
+    $(function()
+    {
+        $('#ticketsOpen').click(function() 
+        {
+            $('#table').DataTable().ajax.reload();
+        });
+    });
+});
+</script>
 </main>
 <% include ../partials/footer.ejs %>
