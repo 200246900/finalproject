@@ -44,7 +44,9 @@ router.post('/add', function (req, res, next) {
         ticketCreated: req.body.ticketCreated,
         ticketLastUpdate: req.body.ticketLastUpdate,
         ticketLife: req.body.ticketLife,
-        ticketUpdate: req.body.ticketUpdate
+        ticketUpdate: req.body.ticketUpdate,
+        ticketUser: req.body.ticketUser,
+        ticketUserContact: req.body.ticketUserContact
     }, function (error, Ticket) {
         // did we get back an error or valid Ticket object?
         if (error) {
@@ -88,7 +90,9 @@ router.post('/:id', function (req, res, next) {
         ticketCreated: req.body.ticketCreated,
         ticketLastUpdate: req.body.ticketLastUpdate,
         ticketLife: req.body.ticketLife,
-        ticketUpdate: req.body.ticketUpdate
+        ticketUpdate: req.body.ticketUpdate,
+        ticketUser: req.body.ticketUser,
+        ticketUserContact: req.body.ticketUserContact
     });
     // run the update using mongoose and our model
     Ticket.update({ _id: id }, ticket, function (error) {

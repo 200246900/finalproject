@@ -24,7 +24,7 @@ var ticketSchema = new mongoose.Schema({
     },
     ticketPriority: {
         type: String,
-        default: 'LOW',
+        default: '',
         trim: true
     },
     ticketDesc: {
@@ -48,6 +48,16 @@ var ticketSchema = new mongoose.Schema({
         trim: true
     },
     ticketUpdate: {
+        type: String,
+        default: '',
+        trim: true
+    },
+    ticketUser: {
+        type: String,
+        default: '',
+        trim: true
+    },
+    ticketUserContact: {
         type: String,
         default: '',
         trim: true

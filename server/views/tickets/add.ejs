@@ -1,11 +1,13 @@
 <% include ../partials/header.ejs %>
 <% include ../partials/navbar.ejs %>
 <main class="container">
-    <h1>Generate New Ticket</h1>
 
+    <!--Add Ticket Form-->
     <form method="post">
         <div class="container col-md-3"></div>
         <div class="container col-md-6">
+            <!--TItle-->
+            <h1>Generate New Ticket</h1>
             <!--Ticket Number-->
             <div class="row">
                 <div class="col-xs-5">
@@ -13,8 +15,8 @@
                 </div>
                 <div class="col-xs-7">
                     <input class="form-control" name="ticketNum" readonly required value="<%= Date.now() %>" />
-                    <input class="form-control" name="ticketLastUpdate" hidden readonly required value="<%= Date.now() %>" />
-                    <input class="form-control" name="ticketCreated" hidden readonly required value="<%= Date.now() %>" />
+                    <input name="ticketLastUpdate" hidden readonly required value="<%= Date.now() %>" />
+                    <input name="ticketCreated" hidden readonly required value="<%= Date.now() %>" />
                 </div>
             </div>
             <!--Ticket Owner-->
@@ -23,7 +25,7 @@
                     <label class="form-control" for="ticketOwner">Owner Name</label>
                 </div>
                 <div class="col-xs-7">
-                    <input class="form-control" type="text" name="ticketOwner" id="n1" onkeyup="sync()">
+                    <input class="form-control" type="text" name="ticketOwner" value="Tyler Cadeau" id="n1" onkeyup="sync()">
                 </div>
             </div>
             <!--Ticket Status -->
@@ -33,6 +35,24 @@
                 </div>
                 <div class="col-xs-7">
                     <input class="form-control" type="text" name="ticketStatus" id="n1" readonly value="New">
+                </div>
+            </div>
+            <!--Affected Users-->
+            <div class="row">
+                <div class="col-xs-5">
+                    <label class="form-control" for="radioCheck">Affected User</label>
+                </div>
+                <div class="col-xs-7">
+                    <input class="form-control" type="text" required name="ticketUser" value="Jane Doe">
+                </div>
+            </div>
+            <!--User Contact-->
+            <div class="row">
+                <div class="col-xs-5">
+                    <label class="form-control" for="radioCheck">Contact Email</label>
+                </div>
+                <div class="col-xs-7">
+                    <input class="form-control" type="email" required name="ticketUserContact" value="Jane@Doe.com">
                 </div>
             </div>
             <!--Priority Level-->
@@ -54,18 +74,18 @@
                     <label class="form-control" for="ticketDesc">Ticket Description</label>
                 </div>
                 <div class="col-xs-12">
-                    <textarea class="form-control" name="ticketDesc" required value="None"></textarea>
+                    <textarea class="form-control" name="ticketDesc" required value="None" onkeyup="sync()"></textarea>
                 </div>
             </div>
             <!--Script for generating Incident Narrative-->
             <script>
-                function sync()
-                        {
-                        var n1 = document.getElementById('n1');
-                        var n2 = document.getElementById('n2');
-                        var n3 = document.getElementById('n3');
-                        n2.value = Date.now() + '/' + 'New' + '/' + n3.value + '/' + n1.value + '/' + 'Created' + '/';
-                        }
+                function sync() {
+                    var n1 = document.getElementById('n1');
+                    var n2 = document.getElementById('n2');
+                    var n3 = document.getElementById('n3');
+                    //Incident narrative = CurrentDate + Status + Owner + Change
+                    n2.value = Date.now() + '/' + 'New' + '/' + n3.value + '/' + n1.value + '/' + 'Created' + '/';
+                }
             </script>
             <input hidden type="text" name="ticketLife" id="n2" />
             

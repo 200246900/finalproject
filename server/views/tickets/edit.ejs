@@ -12,6 +12,7 @@
     var n4 = document.getElementById('n4');
     var n5 = document.getElementById('n5');
     var n6 = document.getElementById('n6');
+    var date = document.getElementById('dateView');
     n2.value = n4.value + Date.now() + '/' + n5.value + '/'+ n6.value + '/' + n1.value + '/' + n3.value + '/';
     }
 </script>
@@ -36,19 +37,37 @@
                     <label class="form-control" for="ticketCreated">Date Created</label>
                 </div>
                 <div class="col-xs-7">
-                    <input class="form-control" readonly name="ticketCreated" value="<%= ticket.ticketCreated %>" />
+                    <!-- Grab date from epoche value -->
+                    <input  hidden readonly name="ticketCreated" value="<%= ticket.ticketCreated %>" />
+                    <!-- Convert for user readability -->
+                    <input class="form-control" readonly name="dateView" value="<%= Date(ticket.ticketCreated).slice(0,-32) %>" />
                 </div>
             </div>
             <!-- Ticket Owner -->
             <div class="row">
                 <div class="col-xs-5">
-                    <label class="form-control" for="ticketOwner">Owner Name</label>
+                    <label class="form-control" for="ticketOwner">Ticket Creator</label>
                 </div>
                 <div class="col-xs-7">
                     <input class="form-control" name="ticketOwner" required type="text" readonly value="<%= ticket.ticketOwner %>">
                 </div>
-                <div class="col-xs-12">
-                    <input class="form-control" required type="text" readonly value="<%= ticket.ticketLife %>">
+            </div>
+            <!-- Affected User -->
+            <div class="row">
+                <div class="col-xs-5">
+                    <label class="form-control" for="ticketUser">Affected User</label>
+                </div>
+                <div class="col-xs-7">
+                    <input class="form-control" name="ticketUser" required type="text" readonly value="<%= ticket.ticketUser %>">
+                </div>
+            </div>
+            <!-- User Contact -->
+            <div class="row">
+                <div class="col-xs-5">
+                    <label class="form-control" for="ticketUserContact">User Contact</label>
+                </div>
+                <div class="col-xs-7">
+                    <input class="form-control" name="ticketUserContact" required type="text" readonly value="<%= ticket.ticketUserContact %>">
                 </div>
             </div>
             <!-- Ticket Description -->
@@ -78,7 +97,7 @@
                     <label class="form-control" for="radioCheck">Username</label>
                 </div>
                 <div class="col-xs-7">
-                    <input class="form-control" required type="text" name="n1" id="n1" onkeyup="sync()">
+                    <input class="form-control" required type="text" name="n1" id="n1" onkeyup="sync()" value="Tyler Cadeau">
                 </div>
             </div>
             <!-- Priority Level -->
@@ -88,6 +107,7 @@
                 </div>
                 <div class="col-xs-7">
                     <select class="form-control" name="ticketPriority" id="n6">
+                        <option selected disabled><%= ticket.ticketPriority %></option>
                         <option value="Low">Low</option>
                         <option value="Medium">Medium</option>
                         <option value="High">High</option>

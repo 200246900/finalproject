@@ -52,6 +52,16 @@ var ticketSchema = new mongoose.Schema ({
         type: String,
         default: '',
         trim: true
+    },
+    ticketUser: {
+        type: String,
+        default: '',
+        trim: true
+    },
+    ticketUserContact: {
+        type: String,
+        default: '',
+        trim: true
     }
 }, 
 {
