@@ -1,6 +1,6 @@
 <% include ../partials/header.ejs %>
 <% include ../partials/navbar.ejs %>
-<main class="container">
+<main class="container" id="mainContent">
     <!-- Title -->
     <h1>Tickets</h1>
 
@@ -57,7 +57,7 @@
         <tbody>
             <!--Loop through records and display-->
             <% for (var i = 0; i < tickets.length; i++) { %>
-                <tr>
+                <tr class="danger">
                     <!--Clickable link to edit ticket-->
                     <td><a href="/tickets/<%= tickets[i]._id %>" title="Edit Article"><%= tickets[i].ticketNum %></a></td>
                     <td><%= tickets[i].ticketPriority %></td>
@@ -101,6 +101,15 @@
             $("#incidentBoardALL").show();
             $("#incidentBoardOpen").hide();
         }
+        
+        function colourCode(priority) 
+        {
+            if (priority=="High")
+            {
+                document.write("<tr class='danger'>");   
+            }
+        }
+        colourCode("Hey")
     </script>
 </script>
 </main>

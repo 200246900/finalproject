@@ -1,6 +1,6 @@
 <% include ../partials/header.ejs %>
 <% include ../partials/navbar.ejs %>
-<main class="container">
+<main class="container" id="mainContent">
 
     <!--Add Ticket Form-->
     <form method="post">
@@ -25,7 +25,7 @@
                     <label class="form-control" for="ticketOwner">Owner Name</label>
                 </div>
                 <div class="col-xs-7">
-                    <input class="form-control" type="text" name="ticketOwner" value="Tyler Cadeau" id="n1" onkeyup="sync()">
+                    <input class="form-control" type="text" name="ticketOwner" readonly value="Tyler Cadeau" id="n1" onkeyup="sync()">
                 </div>
             </div>
             <!--Ticket Status -->

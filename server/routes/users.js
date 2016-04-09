@@ -10,6 +10,24 @@ function requireAuth(req, res, next) {
     }
     next();
 }
+//User Information
+router.get('/', requireAuth, function (req, res, next) {
+    // use the Users model to query the Users collection
+    User.find(function (error, users) {
+        if (error) {
+            console.log(error);
+            res.end(error);
+        }
+        else {
+            // no error, we found a list of users
+            res.render('users/index', {
+                title: 'Users',
+                users: users,
+                displayName: req.user ? req.user.displayName : ''
+            });
+        }
+    });
+});
 // GET - show main users page - list all the users
 router.get('/', requireAuth, function (req, res, next) {
     // use the Users model to query the Users collection
