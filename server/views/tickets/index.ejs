@@ -11,7 +11,7 @@
     <a href="javascript:toggleAll();" class="btn btn-primary">Show Open Tickets</a>
     <a href="javascript:toggleOpen();" class="btn btn-primary">Show All Tickets </a>
     <!-- Incident Board-->
-    <table class="table table-bordered" name="incidentBoardOpen" id="incidentBoardOpen">
+    <table class="table table-bordered" name="incidentBoardOpen" id="incidentBoardOpen" style="background-color: black">
         <thead>
             <tr>
                 <th>Ticket Number</th>
@@ -41,8 +41,8 @@
         </tbody>
     </table>
     
-    <!-- Incident Board-->
-    <table class="table table-bordered" name="incidentBoardOpen" id="incidentBoardALL">
+    <!-- Incident Board 2-->
+    <table class="table table-bordered" name="incidentBoardOpen" id="incidentBoardALL" style="background-color: black">
         <thead>
             <tr>
                 <th>Ticket Number</th>
@@ -57,7 +57,7 @@
         <tbody>
             <!--Loop through records and display-->
             <% for (var i = 0; i < tickets.length; i++) { %>
-                <tr class="danger">
+                <tr>
                     <!--Clickable link to edit ticket-->
                     <td><a href="/tickets/<%= tickets[i]._id %>" title="Edit Article"><%= tickets[i].ticketNum %></a></td>
                     <td><%= tickets[i].ticketPriority %></td>
@@ -71,7 +71,7 @@
             <% } %>
         </tbody>
     </table>
-    
+    <br><br><br><br><br>
     <!-- ScriptSection-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script>
@@ -102,14 +102,6 @@
             $("#incidentBoardOpen").hide();
         }
         
-        function colourCode(priority) 
-        {
-            if (priority=="High")
-            {
-                document.write("<tr class='danger'>");   
-            }
-        }
-        colourCode("Hey")
     </script>
 </script>
 </main>
